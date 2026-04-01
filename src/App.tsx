@@ -62,9 +62,16 @@ const Hero = () => (
         <div className="glass-panel absolute inset-4 rounded-2xl border border-white/20 shadow-2xl overflow-hidden flex items-center justify-center">
           <img 
             className="w-full h-full object-cover grayscale-img" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkuQ55vSv2ljoIV2ct2W_j41QT4CyulXtYquT_lnlOSyjkJp-4CgRgw0mu9KcGSc2JDRCKlrPO2K-EGHQxueS4hQega7sIPrchyRkyHRo159FRaEWzeeV7aVJECkSH71z23s4JRfOLDKguI_gKkFkiTxRdW-dXcauNC-jphKYKDKp0Nj4KDKp0Nj4KZZhAvsVD7Y4k69nk3C3jNaqqfw4c7a9MeWMhTZjmdmjwUESPiR4Fnc8SDNkNO-k9o0JDgAx1OnO2WVC2Mbuitm-HVTQ" 
+            src="/profile.jpg" 
             alt="Prince Immanuel"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              // Fallback to the original image if the local one isn't found yet
+              const target = e.target as HTMLImageElement;
+              if (target.src.includes('/profile.jpg')) {
+                target.src = "https://lh3.googleusercontent.com/aida-public/AB6AXuDkuQ55vSv2ljoIV2ct2W_j41QT4CyulXtYquT_lnlOSyjkJp-4CgRgw0mu9KcGSc2JDRCKlrPO2K-EGHQxueS4hQega7sIPrchyRkyHRo159FRaEWzeeV7aVJECkSH71z23s4JRfOLDKguI_gKkFkiTxRdW-dXcauNC-jphKYKDKp0Nj4KDKp0Nj4KZZhAvsVD7Y4k69nk3C3jNaqqfw4c7a9MeWMhTZjmdmjwUESPiR4Fnc8SDNkNO-k9o0JDgAx1OnO2WVC2Mbuitm-HVTQ";
+              }
+            }}
           />
         </div>
       </motion.div>
@@ -231,9 +238,10 @@ const Projects = () => (
 );
 
 const Security = () => (
-  <section className="py-32 px-8 max-w-7xl mx-auto" id="security">
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-      <div className="md:col-span-5 sticky top-32">
+  <section className="py-32 bg-white" id="security">
+    <div className="max-w-7xl mx-auto px-8">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
+        <div className="md:col-span-5 md:sticky md:top-32">
         <span className="font-label text-tertiary font-bold tracking-widest text-xs uppercase mb-4 block">Future Penetration Tester</span>
         <h2 className="font-headline text-5xl font-bold tracking-tight mb-8">Cyber Security Journey</h2>
         <p className="font-body text-xl text-slate-600 leading-relaxed mb-8">
@@ -267,7 +275,8 @@ const Security = () => (
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 );
 
 const Testimonial = () => (
