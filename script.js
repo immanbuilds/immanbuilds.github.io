@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
-    
+
+    initializeMobileMenu();
+
     // Initial check for reveal elements
     reveal();
 });
@@ -44,3 +46,39 @@ function reveal() {
 }
 
 window.addEventListener("scroll", reveal);
+
+function initializeMobileMenu() {
+    var menuButton = document.getElementById('mobile-menu-button');
+    var mobileMenu = document.getElementById('mobile-menu');
+    var openIcon = document.getElementById('menu-icon-open');
+    var closeIcon = document.getElementById('menu-icon-close');
+
+    if (!menuButton || !mobileMenu || !openIcon || !closeIcon) {
+        return;
+    }
+
+    function setMenuState(isOpen) {
+        mobileMenu.classList.toggle('hidden', !isOpen);
+        openIcon.classList.toggle('hidden', isOpen);
+        closeIcon.classList.toggle('hidden', !isOpen);
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('menu-open', isOpen);
+    }
+
+    menuButton.addEventListener('click', function () {
+        var isOpen = mobileMenu.classList.contains('hidden');
+        setMenuState(isOpen);
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            setMenuState(false);
+        });
+    });
+
+    window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768) {
+            setMenuState(false);
+        }
+    });
+}

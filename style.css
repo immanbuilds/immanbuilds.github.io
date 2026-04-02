@@ -1,3 +1,18 @@
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
 .grayscale-img {
     filter: grayscale(100%);
     transition: filter 0.5s ease;
