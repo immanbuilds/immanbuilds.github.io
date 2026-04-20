@@ -52,3 +52,26 @@ img {
     opacity: 1;
     transform: translateX(0);
 }
+
+/* Pricing section helpers */
+.pricing-card { /* fallback visual */
+    background-clip: padding-box;
+}
+.most-popular {
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+}
+
+/* Subtle hover animation for badges/buttons */
+.pricing-card .badge,
+.pricing-card .btn {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.pricing-card:hover .badge,
+.pricing-card:hover .btn {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    /* tighter spacing on mobile */
+    .pricing-card { padding: 1.25rem; }
+}
